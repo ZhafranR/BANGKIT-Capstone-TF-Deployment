@@ -223,7 +223,7 @@ while True:
         epochs+=1
         start_+=mult
         end_+=mult
-        # time.sleep(1.25)
+        time.sleep(1.25)
 
         
     except Exception as e:
@@ -239,4 +239,4 @@ def home():
     return flask.jsonify(p_s_mag_prediction)
 
 if __name__ == "__main__":
-    app.run(port=int(os.environ.get("PORT", 8080)),host='0.0.0.0',debug=True)
+    app.run(port=int(os.environ.get("PORT", 8081)),host='0.0.0.0',debug=True)
