@@ -223,7 +223,7 @@ while True:
         epochs+=1
         start_+=mult
         end_+=mult
-        time.sleep(1.25)
+        # time.sleep(1.25)
 
         
     except Exception as e:
