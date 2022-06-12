@@ -32,7 +32,7 @@ def DenoiseWavelet(data, type='BayesShrink'):
 def create_feature(data_feature):
     rs = []
     # data_denoise = DenoiseWavelet(data_feature, type='BayesShrink')
-    dt = tf.keras.utils.timeseries_dataset_from_array(data=data_denoise, targets=None,
+    dt = tf.keras.utils.timeseries_dataset_from_array(data=data_feature, targets=None,
                                                           sequence_length=100, sequence_stride=20,
                                                           shuffle=False)
     for i in dt:
