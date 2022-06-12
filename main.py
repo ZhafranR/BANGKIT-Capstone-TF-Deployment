@@ -3,7 +3,7 @@ import tensorflow as tf
 import tensorflow_addons as tfa
 import numpy as np
 import pandas as pd
-from skimage.restoration import denoise_wavelet, estimate_sigma
+# from skimage.restoration import denoise_wavelet, estimate_sigma
 from datetime import datetime
 import time
 
@@ -31,7 +31,7 @@ def DenoiseWavelet(data, type='BayesShrink'):
 
 def create_feature(data_feature):
     rs = []
-    data_denoise = DenoiseWavelet(data_feature, type='BayesShrink')
+    # data_denoise = DenoiseWavelet(data_feature, type='BayesShrink')
     dt = tf.keras.utils.timeseries_dataset_from_array(data=data_denoise, targets=None,
                                                           sequence_length=100, sequence_stride=20,
                                                           shuffle=False)
@@ -159,8 +159,8 @@ while True:
             is_p_detected = True
 
         if is_p_detected and ((high_ and early_ and late_) == -1):
-            data_pred_np = DenoiseWavelet(X[start_-6000:start_, :], type='BayesShrink')
-            data_pred_np = np.expand_dims(data_pred_np, axis=0)
+            # data_pred_np = DenoiseWavelet(X[start_-6000:start_, :], type='BayesShrink')
+            data_pred_np = np.expand_dims(X[start_-6000:start_, :], axis=0)
                         
             data_pred = DataGenerator(data_pred_np, batch_size=196)
             y_pred = s_model.predict(data_pred.x).flatten()
