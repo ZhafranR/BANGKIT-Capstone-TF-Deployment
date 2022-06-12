@@ -3,7 +3,7 @@ import tensorflow as tf
 import tensorflow_addons as tfa
 import numpy as np
 import pandas as pd
-from skimage.restoration import (denoise_wavelet, estimate_sigma)
+from skimage.restoration import denoise_wavelet, estimate_sigma
 from datetime import datetime
 import time
 
@@ -104,16 +104,16 @@ class F1_Score(tf.keras.metrics.Metric):
         self.recall_fn.reset_states()
         self.f1.assign(0)
 
-PATH = '/Models/P-Model'
+PATH = './Models/P-Model'
 p_model = tf.keras.models.load_model(PATH, custom_objects={'F1_Score':F1_Score,
                                                               'loss':tfa.losses.SigmoidFocalCrossEntropy()})
 
 # === LOAD SAVEDMODEL ===
 
-PATH = '/Models/S-Model'
+PATH = './Models/S-Model'
 s_model = tf.keras.models.load_model(PATH)
 
-X = np.load('/stead_indonesia_single_wavelength.npz')['arr_0']
+X = np.load('./stead_indonesia_single_wavelength.npz')['arr_0']
 
 start_ = 35075
 end_ = start_+1200
@@ -239,4 +239,4 @@ def home():
     return flask.jsonify(p_s_mag_prediction)
 
 if __name__ == "__main__":
-    app.run(port=int(os.environ.get("PORT", 8081)),host='0.0.0.0',debug=True)
+    app.run(port=int(os.environ.get("PORT", 8080)),host='0.0.0.0',debug=True)
